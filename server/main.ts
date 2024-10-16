@@ -32,13 +32,9 @@ io.on("connection", socket => {
   console.log("connect");
 
   socket.on("voice", data => {
-    let newData = data.split(";");
-    newData[0] = "data:audio/ogg;";
-    newData = newData[0] + newData[1];
-
     for (const id in socketsStatus) {
-      socket.broadcast.to(id).emit("voice", newData);
-      socket.emit("voice", newData);
+      socket.broadcast.to(id).emit("voice", data);
+      socket.emit("voice", data);
       // if (id != socketId && !socketsStatus[id].mute && socketsStatus[id].online) {
       //   socket.broadcast.to(id).emit("voice", newData);
       // }

@@ -1,1 +1,7 @@
 <button *ngIf="!started" (click)="start()">Start</button>
+
+<div *ngIf="started">
+  @for (msg of speaker.messages; track $index) {
+    <audio-log-message [message]="msg"></audio-log-message>
+  }
+</div>
